@@ -20,8 +20,10 @@
   },
   "homepage": "https://github.com/cccnqu/ws107a#readme",
   "dependencies": {
+    "ejs": "^2.6.1",
     "koa": "^2.5.2",
     "koa-json": "^2.0.2",
-    "koa-static": "^5.0.0"
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.1.4"
   }
 }
