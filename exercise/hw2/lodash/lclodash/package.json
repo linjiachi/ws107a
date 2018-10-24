@@ -1,0 +1,11 @@
+{
+  "name": "lclodash",
+  "version": "0.0.1",
+  "description": "recreate lodash",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "linchi",
+  "license": "ISC"
+}
