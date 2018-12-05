@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="dropdown.css"/>
+  <link rel="stylesheet" href="main.css"/>
+  <title>☺ Linchi</title>
+</head>
+<body>
+<ul>
+    <li><a href="#home">Home</a></li>
+
+    <li><a href="#moderator">Moderator</a></li>
+
+    <!-- 下拉式選單 -->
+    <div class="dropdown" style="float:right">
+        <a>User</a>
+        <div class="dropdown-content">
+            <a style="padding: 10px 10px;" href="#login">登入</a>
+            <a style="padding: 10px 10px;" href="#logout">登出</a>
+            <a style="padding: 10px 10px;" href="#register">註冊</a>
+        </div>
+    </div> 
+
+    <div class="dropdown" style="float:left">
+    <a>School</a>
+    <div class="dropdown-content">
+        <a style="padding: 10px 16px;" href="#elementary">國小</a>
+        <a style="padding: 10px 16px;" href="#junior">國中</a>
+        <a style="padding: 10px 16px;" href="#senior">高中</a>
+        <a style="padding: 10px 16px;" href="#college">大學</a>
+    </div>
+    </div> 
+
+    <div class="dropdown" style="float:left">
+    <a>Curriculum</a>
+    <div class="dropdown-content">
+        <a  style="padding: 10px 40px;" href="#grade">大一上</a>
+        <a  style="padding: 10px 40px;" href="#grade1">大一下</a>
+    </div>
+    </div>
+  
+</ul>
+<div id="main"></div>
+
+<script src="ui.js"></script>
+<script src="page.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

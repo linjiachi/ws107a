@@ -14,7 +14,12 @@ router
   .get('/', list)
   .get('/post/new', add)
   .get('/post/:id', show)
+  .get('/edit/:id', edit)
+  .get('/delete/:id', remove)
+  .post('/modify/:id', modify)
   .post('/post', create)
+  //get 超連結
+  //post 表單(網址短且乾淨)
 
 app.use(router.routes())
 
@@ -32,6 +37,27 @@ async function show (ctx) {
   const post = M.get(id)
   if (!post) ctx.throw(404, 'invalid post id')
   ctx.body = await V.show(post)
+}
+
+async function edit (ctx) {
+  const id = ctx.params.id
+  const post = M.get(id)
+  if (!post) ctx.throw(404, 'invalid post id')
+  ctx.body = await V.edit(post)
+}
+
+async function remove (ctx) {
+  const id = ctx.params.id
+  const post = M.remove(id)
+  if (!post) ctx.throw(404, 'invalid post id')
+  ctx.redirect('/')
+}
+
+async function modify (ctx) {
+  const post = ctx.request.body
+  post.id = ctx.params.id
+  M.modify(post)
+  ctx.redirect('/')
 }
 
 async function create (ctx) {
