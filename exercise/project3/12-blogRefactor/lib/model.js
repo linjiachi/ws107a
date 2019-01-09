@@ -79,7 +79,8 @@ M.post.update = async function (user, board, post) {
 
 //刪除
 M.post.delete = async function (user, board, post) {
-  if(user == null) return false
+  if(post.user != user) return false
+  if(post.user === user)
   post.file = posts.file
   posts.file = null
   return post
