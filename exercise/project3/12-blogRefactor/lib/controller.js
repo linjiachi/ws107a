@@ -85,6 +85,15 @@ C.post.show = async function (ctx) {
   ctx.body = await V.post.show(post, ctx)
 }
 
+//刪除
+C.post.delete = async function (ctx) {
+  const board = ctx.query.board
+  const post = ctx.request.body
+  let isSuccess = await M.post.delete(ctx.session.user, board, post)
+  if (!isSuccess) ctx.throw(404, 'invalid post')
+  ctx.body = await V.post.delete(post, ctx)
+}
+
 C.post.updateForm = async function (ctx) {
   const post = await M.post.read(ctx.query.board, ctx.query.file)
   if (!post) ctx.throw(404, 'invalid post')
@@ -96,7 +105,7 @@ C.post.create = async function (ctx) {
   const post = ctx.request.body
   let isSuccess = await M.post.create(ctx.session.user, board, post)
   if (isSuccess) {
-    ctx.redirect(`/post/list?board=${board}`)
+    ctx.redirect(`/post/list?board=${board}&file=${file}`)
   } else {
     ctx.status = 401
     ctx.body = V.fail(ctx)

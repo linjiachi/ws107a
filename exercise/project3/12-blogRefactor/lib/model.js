@@ -37,6 +37,7 @@ M.user.signup = async function (user) {
   return profile == null
 }
 
+//新增會員
 M.user.create = async function (passport) {
   await M.profiles.insertOne(passport)
   await M.boards.insertOne({board: passport.user})
@@ -74,6 +75,14 @@ M.post.update = async function (user, board, post) {
   post.user = user
   let result = await M.posts.updateOne({board: board, file: post.file}, {$set: post}, { upsert: false })
   return result.modifiedCount === 1
+}
+
+//刪除
+M.post.delete = async function (user, board, post) {
+  if(user == null) return false
+  post.file = posts.file
+  posts.file = null
+  return post
 }
 
 M.post.read = async function (board, file) {

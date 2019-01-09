@@ -56,6 +56,7 @@ router
   .get('/post/createForm', C.post.createForm)
   .get('/post/updateForm', C.post.updateForm)
   .get('/post/show', C.post.show)
+  .get('/post/delete', C.post.delete) //刪除
   .post('/post/create', C.post.create)
   .post('/post/update', C.post.update)
 

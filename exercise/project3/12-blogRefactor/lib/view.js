@@ -70,11 +70,11 @@ V.layout = function (title, content, ctx) {
 }
 
 V.fail = function (ctx) {
-  return V.layout('失敗！', '失敗！', ctx)
+  return V.layout('失敗！', '失敗！, 回到 <a href="/">首頁！</a>', ctx)
 }
 
 V.success = function (ctx) {
-  return V.layout('成功！', '成功！', ctx)
+  return V.layout('成功！', `成功！, 回到 <a href="/">首頁！</a>`, ctx)
 }
 
 V.board.layout = function (board, title, content, ctx) {
@@ -139,6 +139,7 @@ V.post.list = function (board, posts, ctx) {
   let content = `
   <div style="float:right">
     <p><a href="/post/createForm?board=${board}"><button>創建新貼文</button></a></p>
+    <p><a href="/"><button>回上一頁</button></a></p> 
   </div>
   <h1>${board} 留言板</h1>
   <p>總共有 <strong>${posts.length}</strong> 則貼文!</p>
@@ -157,6 +158,7 @@ V.post.createForm = function (board, ctx) {
     <p>
       <input type="text" placeholder="File" name="file" size="10" value="">
       <input type="submit" value="儲存"/>
+      <input type="button" value="返回" onclick="location.href='/post/list?board=${board}'"/>
     </p>
   </form>
   `, ctx)
@@ -166,6 +168,8 @@ V.post.show = function (post, ctx) {
   return V.board.layout(post.board, post.title, `
   <div style="float:right">
     <p><a href="/post/updateForm?board=${post.board}&file=${post.file}"><button>編輯貼文</button></a></p>
+    <p><a href="/post/delete?board=${post.board}"><button>刪除貼文</button></a></p>
+    <p><a href="/post/list?board=${post.board}"><button>返回上一頁</button></a></p>
   </div>
   <h1>${post.title}</h1>
   <p>${mdit.render(post.body)}</p>
@@ -180,6 +184,7 @@ V.post.updateForm = function (post, ctx) {
   <p>
     <input type="text" placeholder="File" name="file" size="10" value="${post.file}">
     <input type="submit" value="儲存"/>
+    <input type="button" value="返回" onclick="location.href='/post/show?board=${post.board}&file=${post.file}'"/>
   </p>
   </form>
   `, ctx)
