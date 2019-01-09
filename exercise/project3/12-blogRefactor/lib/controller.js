@@ -90,8 +90,10 @@ C.post.delete = async function (ctx) {
   const board = ctx.query.board
   const post = ctx.request.body
   let isSuccess = await M.post.delete(ctx.session.user, board, post)
-  if (!isSuccess) ctx.throw(404, 'delete invalid')
-  ctx.body = await V.post.delete(board, post, ctx)
+  if (!isSuccess) 
+  ctx.response.status = 404;
+  ctx.response.body = 'delete invalid, 你不是版主! <a href="/">回首頁!</a>'
+  ctx.body.file = null
 }
 
 C.post.updateForm = async function (ctx) {
